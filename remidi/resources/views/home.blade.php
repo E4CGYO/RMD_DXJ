@@ -4,24 +4,30 @@
 
 @section('content')
 {{-- content  --}}
-<h1>Welcome to the Home Page</h1>
-{{-- Universitas bumigora --}}
-<img src="img/ubgg.jpg" class="img-fluid" alt="fotonya kosong">
-<br>
-{{-- Universitas Mataram --}}
-<img src="img/unram.jpeg" class="img-fluid" alt="fotonya kosong">
-<br>
-{{-- UIN (State Islamic University of Mataram) --}}
-<img src="img/UIN.jpg" class="img-fluid" alt="fotonya kosong">
-<br>
-{{-- Undikma (Universitas Pendidikan Mandalika) --}}
-<img src="img/undikma.jpg" class="img-fluid" alt="fotonya kosong">
-<br>
-{{-- Universitas Nahdlatul Wathan Mataram --}}
-<img src="img/unw.jpg" class="img-fluid" alt="fotonya kosong">
-<br>
-{{-- Unitar (Universitas Islam Al-Azhar) --}}
-<img src="img/UNITAR.jpg" class="img-fluid" alt="fotonya kosong">
-<br>
+<div class="container mt-4">
+    <div class="row">
+        @foreach($data as $imguniv)
+            <div class="col-12 mb-5">
+                <div class="card border-0 shadow-sm">
+
+                    {{-- FOTO --}}
+                    <img src="{{ asset('img/' . $imguniv['foto']) }}" class="card-img-top img-fluid rounded" alt="{{ $imguniv['nama'] }} "
+                     style="width: 150rem; height: 23rem ; object-fit: cover;">
+                    <div class="card-body text-center">
+                    {{-- NAMA --}}
+                    <h4 class="card-title fw-bold">{{ $imguniv['nama'] }}</h4>
+                    {{-- DESKRIPSI --}}
+                    <p class="card-text text-muted">{{ $imguniv['deskripsi'] }}</p>
+                    {{-- LINK READ MORE --}}
+                    <a href="{{ url('/post/' . $imguniv['id']) }}" class="text-decoration-none">
+                     Read More →
+                    </a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
 {{-- content end --}}
 @endsection
